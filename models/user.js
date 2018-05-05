@@ -1,7 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
         name: {
-
             type: DataTypes.STRING,
             validate: {
                 isAlpha: true,
@@ -9,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         isAdmin: {
             type: DataTypes.BOOLEAN,
-            defaultValue: false,
+            defaultValue: 0,
         }
     });
 
