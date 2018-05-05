@@ -1,0 +1,27 @@
+{
+  "name": "bamazonOnline",
+  "version": "1.0.0",
+  "description": "Online bAmazon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/molinacarlosdev/bamazonOnline.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/molinacarlosdev/bamazonOnline/issues"
+  },
+  "homepage": "https://github.com/molinacarlosdev/bamazonOnline#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mysql": "^2.15.0",
+    "sequelize": "^4.37.6",
+    "sequelize-cli": "^4.0.0"
+  }
+}
