@@ -1,28 +1,28 @@
-module.exports = function(sequelize, DataTypes){
+module.exports = function (sequelize, DataTypes) {
     var Product = sequilize.define(
-      "Product",
-       {
+        "Product",
+        {
             productName: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-           departmentName: {
+            departmentName: {
                 type: DataTypes.STRING,
                 allowNull: false
-           },
-           price: {
-                type: DataTypes.DECIMAL(10,2),
+            },
+            price: {
+                type: DataTypes.DECIMAL(10, 2),
                 defaultValue: 0.00
-           },
-           stockQuantity: {
+            },
+            stockQuantity: {
                 type: DataTypes.INTEGER,
                 defaultValue: 0
-           },
-           productSales: {
-                type: DataTypes.DECIMAL(10,2),
+            },
+            productSales: {
+                type: DataTypes.DECIMAL(10, 2),
                 defaultValue: 0
-           }
-       },
-       {}
+            }
+        },
+        {}
     );
 };
