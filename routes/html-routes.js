@@ -7,4 +7,10 @@ router.get('', (req,res) => {
     res.render('index', {title: title });
 });
 
+
+// --------------- About route
+router.get('/about', (req, res) => {
+    res.render('about');
+});
+
 module.exports = router;
