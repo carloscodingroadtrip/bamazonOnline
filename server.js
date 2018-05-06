@@ -1,7 +1,10 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var path = require("path");
+const flash = require('connect-flash');
+const methodOverride = require('method-override');
+const express = require("express");
+const session = require('express-session');
 const exphbs = require('express-handlebars');
+const bodyParser = require("body-parser");
+const path = require("path");
 
 var app = express();
 
@@ -19,10 +22,27 @@ app.use(bodyParser.json());
 
 //  ************** MIDDLEWARES ****************
 // --------------------------------------------Handle-bars middleware
-app.engine('handlebars',
-    exphbs({defaultLayout: 'main'})
-);
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+
+// -------------------------------------------- flash middleware
+app.use(flash());
+
+// -------------------------------------------- express-session middleware
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
+}));
+
+//Global variables
+app.use(function(req,res,next) {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    res.locals.user = req.user || null; //send me user or null
+    next();
+});
 
 // Static directory
 app.use(express.static(path.join(__dirname, 'public')));

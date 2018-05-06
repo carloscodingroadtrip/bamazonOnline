@@ -1,11 +1,29 @@
 <h1>Administrator Roles</h1>
-<a href="admin/departments" class="btn btn-warning btn-lg">
-        <span class="fa fa-plus"></span>Add Departments</a>
-<a href="admin/addproducts" class="btn btn-warning btn-lg">
-        <span class="fa fa-th-list"></span>Add new products</a>
-<a href="admin/viewlowinventory" class="btn btn-warning btn-lg">
-        <span class="fa fa-plus"></span>View Low Inventory</a>
-<a href="admin/addtoinventory" class="btn btn-warning btn-lg">
-        <span class="fa fa-th-list"></span>Add to Inventory</a>
-<a href="admin/salesreport" class="btn btn-warning btn-lg">
-        <span class="fa fa-th-list"></span>Product Sales by Dept</a>
+<div class="container">
+        <div class="row">
+                <a href="admin/departments" class="btn btn-warning btn-lg">
+                        <span class="fa fa-plus"></span>Add Departments</a>
+                <a href="admin/addproducts" class="btn btn-warning btn-lg">
+                        <span class="fa fa-th-list"></span>Add new products</a>
+                <a href="admin/viewlowinventory" class="btn btn-warning btn-lg">
+                        <span class="fa fa-plus"></span>View Low Inventory</a>
+                <a href="admin/addtoinventory" class="btn btn-warning btn-lg">
+                        <span class="fa fa-th-list"></span>Add to Inventory</a>
+                <a href="admin/salesreport" class="btn btn-warning btn-lg">
+                        <span class="fa fa-th-list"></span>Product Sales by Dept</a>
+        </div>
+</div>
+
+<div class="container">
+        <div class="row">
+                <div class="col-md-4">
+                        <div class="card card-body mb-2">
+                                {{#each depts}}
+                                <p>{{name}}</p>
+                                {{!-- <h4>{{name}}</h4> --}}
+                                {{/each}}
+                        </div>
+                </div>
+        </div>
+        {{!-- {{#each dept}} --}} {{!-- {{/#each}} --}}
+</div>
