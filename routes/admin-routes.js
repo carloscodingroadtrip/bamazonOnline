@@ -17,7 +17,7 @@ router.get('/departments', (req, res) => {
     res.render('./admin/add-dept');
 });
 
-//Handling the POST method for the form ADD A DEPARTMENT
+// ************* Handling the POST method when ADDING A DEPARTMENT
 router.post('/', (req, res) => {
     var errors = [];
     if (!req.body.deptname) {
@@ -32,18 +32,37 @@ router.post('/', (req, res) => {
             deptname: req.body.deptname,
         });
     } else {
-        //Save to our DB
-        console.log(db);
-        db.department.create({
-            name: req.body.deptname,
-        }).then((dept) => {
-            res.redirect('/admin');
-        }).catch((err) => {
-            console.log(err);
+        //Check for duplicate department name
+        db.department.findOne({
+            where: { name: req.body.deptname.toLowerCase()}
+        }).then( (dept) => {
+            if (dept) {
+                req.flash('error_msg','Department already exist. Please try again.');
+                res.redirect('./admin');
+            } else {
+                //Save to our DB
+                db.department.create({
+                    name: req.body.deptname.toLowerCase(),
+                }).then((dept) => {
+                    req.flash('success_msg', 'Department has been saved to the database.');
+                    res.redirect('/admin');
+                }).catch((err) => {
+                    console.log(err);
+                });
+            }
         });
     }
 });
 
+// ----------- DELETE a department,
+router.delete('/:id',(req,res) => {
+    db.department.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(() => { res.redirect('/admin');} );
+});
 
 //Adding new products
 router.get('/addproducts', (req, res) => {

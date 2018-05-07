@@ -8,6 +8,9 @@ const path = require("path");
 
 var app = express();
 
+//handlebars helpers
+const {capitalize} =  require('./helpers/hbs.js');
+
 // Routes
 const api       = require('./routes/api-routes');
 const shopping  = require('./routes/html-routes');
@@ -22,12 +25,19 @@ app.use(bodyParser.json());
 
 //  ************** MIDDLEWARES ****************
 // --------------------------------------------Handle-bars middleware
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({
+  helpers: {
+    capitalize: capitalize
+  },
+  defaultLayout: 'main'
+  }
+));
 app.set('view engine', 'handlebars');
 
 // -------------------------------------------- flash middleware
 app.use(flash());
-
+// -------------------------------------------- method Override middleware
+app.use(methodOverride('_method'));
 // -------------------------------------------- express-session middleware
 app.use(session({
   secret: 'secret',
@@ -51,6 +61,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', shopping);
 app.use('/api', api);
 app.use('/admin', admin);
+
 
 
 var PORT = process.env.PORT || 8080;

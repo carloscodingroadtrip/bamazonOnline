@@ -1,6 +1,6 @@
 <h1>Administrator Roles</h1>
 <div class="container">
-        <div class="row">
+        <div class="row btn-group mb-3">
                 <a href="admin/departments" class="btn btn-warning btn-lg">
                         <span class="fa fa-plus"></span>Add Departments</a>
                 <a href="admin/addproducts" class="btn btn-warning btn-lg">
@@ -14,16 +14,29 @@
         </div>
 </div>
 
+<div class="row">
 <div class="container">
         <div class="row">
-                <div class="col-md-4">
-                        <div class="card card-body mb-2">
-                                {{#each depts}}
-                                <p>{{name}}</p>
-                                {{!-- <h4>{{name}}</h4> --}}
-                                {{/each}}
+                <div class="col-md-4 mt-4">
+                        <div class="card card-body">
+                                <h4>Current Departments</h4>
+                                {{#if depts}}
+                                        {{#each depts}}
+                                        <li class='list-group-item'>
+                                                <form action="/admin/{{id}}?_method=DELETE" method="POST">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <input type="submit" class="btn-group btn btn-danger" value="x">
+                                                        <span>{{capitalize name}}</span>
+                                                </form>
+                                                <div class="clearfix"></div>
+                                        </li>
+                                        {{/each}}
+                                {{else}}
+                                <p>No Departments have been created yet.</p>
+                                {{/if}}
+
                         </div>
                 </div>
         </div>
-        {{!-- {{#each dept}} --}} {{!-- {{/#each}} --}}
+</div>
 </div>
