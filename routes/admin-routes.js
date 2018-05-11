@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 // Requiring our models for syncing
 const db = require("../models");
-db.sequelize.sync();
+console.log(Object.keys(db));
+// db.sequelize.sync();
 
 //*********** Admin ROUTES *************/
 //Home page for the admin
